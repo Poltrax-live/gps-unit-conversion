@@ -29,7 +29,8 @@ module GpsUnitConversion
       end
 
       def seconds
-        value[4..-1].to_f / 100.0
+        base = value[4..-1]
+        base.length > 2 ? base.insert(2, '.').to_f : base.to_f
       end
     end
   end

@@ -16,20 +16,20 @@ module GpsUnitConversion
       private
 
       def value
-        numbers = longitude.gsub(/\D/, "")
-        @value ||= numbers[0] == '0' ? numbers[1..-1] : numbers
+        @value  ||= longitude.gsub(/\D/, "")
       end
 
       def degrees
-        value[0..1].to_i
+        value[0..2].to_i
       end
 
       def minutes
-        value[2..3].to_i
+        value[3..4].to_i
       end
 
       def seconds
-        value[4..-1].to_f / 100.0
+        base = value[5..-1]
+        base.length > 2 ? base.insert(2, '.').to_f : base.to_f
       end
     end
   end
